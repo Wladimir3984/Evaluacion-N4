@@ -20,3 +20,5 @@ asientos[15-1] = "X "      #Si la X no se inserta con un espacio se deforma todo
 asientos[15] = "X "     
 asientos[30] = "X "     
 mostrarAsientosDisponibles(asientos)
+
+#sdasdads#
