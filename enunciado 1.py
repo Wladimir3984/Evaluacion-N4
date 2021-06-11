@@ -22,3 +22,4 @@ asientos[30] = "X "
 mostrarAsientosDisponibles(asientos)
 
 #sdasdads#
+#comentario2
