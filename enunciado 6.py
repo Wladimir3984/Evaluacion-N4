@@ -1,10 +1,9 @@
 from math import pi        
 def area_circulo(radio):
-    result=pi * (radio**2)
-    print(result)
+    return pi * (radio**2)
 def perimetro_cuadrado(largo, alto):
-    result=largo+largo+alto+alto
-    print(result)
+    return largo+largo+alto+alto
+
 opcion=0
 
 while opcion!=3:
@@ -24,7 +23,7 @@ while opcion!=3:
         while True:
             try:
                 radio=float(input("Ingrese el radio del círculo=>"))
-                area_circulo(radio)
+                print(area_circulo(radio))
                 break
             except:
                 print("Ingrese solo números.")
@@ -41,7 +40,7 @@ while opcion!=3:
         while True:
             try:
                 alto=float(input("Ingrese alto del cuadrado=>"))
-                perimetro_cuadrado(alto, largo)
+                print(perimetro_cuadrado(largo, alto))
                 break
             except:
                 print("Ingrese solo números")
