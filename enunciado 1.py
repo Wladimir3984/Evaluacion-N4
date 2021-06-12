@@ -1,25 +1,63 @@
-def generarListaAsientos():
-    return [num for num in range(1,43)]
+#utilidad
+from time import sleep
+import os
 
-def mostrarAsientosDisponibles(listaAsientos):
-    print(f" {listaAsientos[0]}   {listaAsientos[1]}   {listaAsientos[2]}", end= "      ")
-    print(f"  {listaAsientos[3]}   {listaAsientos[4]}   {listaAsientos[5]}")
-    print("")
-    print(f" {listaAsientos[6]}   {listaAsientos[7]}   {listaAsientos[8]}", end= "      ")
-    print(f"  {listaAsientos[9]}  {listaAsientos[10]}  {listaAsientos[11]}")
-    print("")
-    
-    for primFila in range(12,38,6):
-        print(f" {listaAsientos[primFila]}  {listaAsientos[primFila+1]}  {listaAsientos[primFila+2]}", end= "       ")
-        print(f"{listaAsientos[primFila+3]}  {listaAsientos[primFila+4]}  {listaAsientos[primFila+5]}")
-        print("")
+def clear():
+    if os.name == "nt":
+        os.system("cls")
+    else:
+        os.system("clear")
+        
+class Pasajero:
+    def __init__(self):
+        nombre = Pasajero.giveNombre()
+        rut = Pasajero.giveRut()
+        telefono = Pasajero.giveNum()
+        banco = Pasajero.giveBanco()
+        
+    @staticmethod
+    def giveNombre(): 
+        nombre = input("Nombre -> ")
+        if len(nombre) > 2 and nombre.isalpha():
+            return nombre
+        print("¡Nombre invalido!")
+        sleep(2)
+        clear()
+        return Pasajero.giveNombre()
+    @staticmethod
+    def giveRut():
+        pass         
+    @staticmethod
+    def giveNum():
+        pass  
+    @staticmethod
+    def giveBanco():
+        pass  
+
+def generarListaAsientos(): #listo
+    return [[num for num in range(1,7)],
+            [num for num in range(7,13)],
+            [num for num in range(13,19)],
+            [num for num in range(19,25)],
+            [num for num in range(25,31)],
+            
+            [num for num in range(31,37)],
+            [num for num in range(37,43)]]
+
+def verAsientosDisponibles(listaAsientos): #Hay que decorarlo
+    print(listaAsientos[0])
+    print(listaAsientos[1])
+    print(listaAsientos[2])
+    print(listaAsientos[3])
+    print(listaAsientos[4])
+    print(listaAsientos[5])
+    print(listaAsientos[6])
 
 #test
 asientos = generarListaAsientos() 
-asientos[15-1] = "X "      #Si la X no se inserta con un espacio se deforma todo
-asientos[15] = "X "     
-asientos[30] = "X "     
-mostrarAsientosDisponibles(asientos)
 
-#sdasdads#
-#comentario2
+asientos[0][3] = "X"      
+asientos[4][2] = "X"      
+asientos[6][5] = "X"   
+verAsientosDisponibles(asientos)
+
