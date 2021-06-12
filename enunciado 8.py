@@ -1,5 +1,5 @@
 while True:
-    palabra=input("Ingrese una palabra=> ")
+    palabra=input("Ingrese una palabra=> ").lower()
     palabra2 = "" #sumador de letras al revés
     contador=0 #contador de letras
     if palabra.replace(" ", "").isalpha(): #omitir espacios y validar que sean solo letras
