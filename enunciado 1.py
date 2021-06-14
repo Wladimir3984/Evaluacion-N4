@@ -8,33 +8,68 @@ def clear():
     else:
         os.system("clear")
         
+def generarListaAsientos(): 
+    return [[num for num in range(1,7)],
+            [num for num in range(7,13)],
+            [num for num in range(13,19)],
+            [num for num in range(19,25)],
+            [num for num in range(25,31)],
+            
+            [num for num in range(31,37)],
+            [num for num in range(37,43)]]
+            
 class Pasajero:
+    cantidadPasajeros = 0
     mensajePedidoDatos = "Ingreso datos pasajero: "
     
     def __init__(self):
-        self.nombre = Pasajero.giveNombre().title()
+        self.nombre = Pasajero.giveNombre()
         self.rut = Pasajero.giveRutCv()
         self.telefono = Pasajero.giveNum()
         self.banco = Pasajero.giveBanco()
+        self.numAsiento = 0
+        Pasajero.addPasajero()
         
-    def toString(self): #Mejorar: que el rut salga con puntos, tendria que retirnar un str en giveRutCv()
+    def toString(self): 
         print(f"""
               
-              nombre:   {self.nombre}
-              rut:      {self.rut[0]}-{self.rut[1]}
-              telefono: {self.telefono}
-              banco:    {self.banco}
+              Nombre:   {" ".join(self.nombre).title()}
+              Run:      {self.rut[0]}-{self.rut[1]}
+              Telefono: {self.telefono}
+              Banco:    {" ".join(self.banco).title()}
+              Asiento:  #{self.numAsiento}
               """)
+     
+    def setNombre(self, nombre):
+        self.nombre = nombre
+    
+    def setTelefono(self, telefono):
+        self.telefono = telefono
         
+    def setNumAsiento(self, num):
+        self.numAsiento = num
+        
+    @classmethod
+    def addPasajero(cls):
+        cls.cantidadPasajeros+=1
+          
+    @classmethod
+    def getCantidadPasajeros(cls):
+        return Pasajero.cantidadPasajeros
+    
     @staticmethod
-    def giveNombre(): #Error: no permite ingresar espacios(solo ingresa primer nombre)
+    def giveNombre(): 
         clear()
         print(Pasajero.mensajePedidoDatos)
         print("")
         
-        nombre = input("Nombre -> ")
-        if len(nombre) > 2 and nombre.isalpha():
-            return nombre
+        nombre = input("Nombre -> ").split(" ")
+        isValidName = True
+        for parteNombre in nombre:
+            if not (len(parteNombre) > 2 and parteNombre.isalpha):
+                isValidName = False
+        if isValidName: return nombre
+        
         clear()
         print("¡Nombre invalido!")
         sleep(2)
@@ -42,13 +77,13 @@ class Pasajero:
         return Pasajero.giveNombre()
     
     @staticmethod
-    def giveRutCv(): #No estoy seguro de la validación, en el rango de numeros
+    def giveRutCv(): 
         clear()
         print(Pasajero.mensajePedidoDatos)
         print("")
         
-        rutCv = input("Rut(ej: 99999999-9) ->")
-        if rutCv.count(".") == 0 and rutCv.count("-") == 1 and rutCv[-2] == "-":
+        rutCv = input("Rut(ej: 99.999.999-9) ->")
+        if rutCv.count(".") == 2 and rutCv.count("-") == 1 and rutCv[-2] == "-" and 11<=len(rutCv)<=12:
             return rutCv.split("-") 
         clear()
         print("¡Rut invalido!")
@@ -80,7 +115,7 @@ class Pasajero:
         return Pasajero.giveNum()
     
     @staticmethod
-    def giveBanco(): #Error: Tampoco permite espacios en el apartado "otros"
+    def giveBanco(): 
         clear()
         print(Pasajero.mensajePedidoDatos)
         
@@ -100,10 +135,18 @@ class Pasajero:
         if 1<=opcion<=2:
             if opcion == 1:
                 return "BancoDuoc"
+            
             while True:
-                banco = input("\nNombre banco -> ")
-                if banco.isalpha():
+                banco = input("\nNombre banco -> ").split(" ")
+                isValidBanco = True
+                
+                for compBanco in banco:
+                    if not compBanco.isalpha and len(compBanco) > 2:
+                        isValidBanco = False
+                
+                if isValidBanco:
                     return banco
+                
                 clear()
                 print("¡Solo letras!")
                 sleep(2)
@@ -115,37 +158,41 @@ class Pasajero:
         sleep(2)
         clear()
         return Pasajero.giveBanco()
-                        
-def generarListaAsientos(): #listo
-    return [[num for num in range(1,7)],
-            [num for num in range(7,13)],
-            [num for num in range(13,19)],
-            [num for num in range(19,25)],
-            [num for num in range(25,31)],
-            
-            [num for num in range(31,37)],
-            [num for num in range(37,43)]]
-
-def verAsientosDisponibles(listaAsientos): #Hay que decorarlo
-    print(listaAsientos[0])
-    print(listaAsientos[1])
-    print(listaAsientos[2])
-    print(listaAsientos[3])
-    print(listaAsientos[4])
-    print(listaAsientos[5])
-    print(listaAsientos[6])
-
+    
+class Avion:
+    pasajeros = []
+    asientos = generarListaAsientos()
+    
+    @classmethod
+    def comprarVuelo(cls,pasajero): #falta: hacer el proceso de compra de vuelo según enunciado
+        cls.pasajeros.append(pasajero)
+        
+        for fila in range(0,7):
+            for asiento in range(0,6):
+                if pasajero.numAsiento == cls.asientos[fila][asiento]:
+                    cls.asientos[fila][asiento] = "X"
+                    
+    @classmethod
+    def anularVuelo(cls,pasajero): #implementar
+        pass     
+    
+    @classmethod
+    def verAsientosDisponibles(cls): #decorar
+        print(cls.asientos[0])
+        print(cls.asientos[1])
+        print(cls.asientos[2])
+        print(cls.asientos[3])
+        print(cls.asientos[4])
+        print(cls.asientos[5])
+        print(cls.asientos[6])
+    
+    @classmethod
+    def verPasajerosInscritos(cls):#implementar
+        pass
+  
 #test
-""" asientos = generarListaAsientos() 
-
-asientos[0][3] = "X"      
-asientos[4][2] = "X"      
-asientos[6][5] = "X"   
-verAsientosDisponibles(asientos) """
-
-""" pruebaRut = Pasajero.giveRutCv()
-print(pruebaRut) """
-
 pasajero = Pasajero()
-pasajero.toString()
-
+pasajero.setNumAsiento(9)
+Avion.comprarVuelo(pasajero)
+#Avion.verPasajerosInscritos() NO IMPLEMENTADO
+Avion.verAsientosDisponibles()
