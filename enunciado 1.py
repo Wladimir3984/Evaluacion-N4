@@ -1,6 +1,7 @@
 #utilidad
 from time import sleep
 import os
+import numpy as np
 
 def clear():
     if os.name == "nt":
@@ -196,3 +197,17 @@ pasajero.setNumAsiento(9)
 Avion.comprarVuelo(pasajero)
 #Avion.verPasajerosInscritos() NO IMPLEMENTADO
 Avion.verAsientosDisponibles()
+
+#creacion matriz bidimensional de asientos especifica para este ejercicio(ver manera de implementar)
+""" a = np.zeros((7,6), dtype=np.int8)
+
+
+for i in range(1,38,6):
+    inicioFila = [num for num in range(1,38,6)]
+    
+    for row in range(7):
+        for col in range(6):
+            a[row][col] = inicioFila[row]+col
+
+        
+print(a) """
