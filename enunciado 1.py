@@ -9,16 +9,18 @@ def clear():
     else:
         os.system("clear")
         
-def generarListaAsientos(): 
-    return [[num for num in range(1,7)],
-            [num for num in range(7,13)],
-            [num for num in range(13,19)],
-            [num for num in range(19,25)],
-            [num for num in range(25,31)],
-            
-            [num for num in range(31,37)],
-            [num for num in range(37,43)]]
-            
+def generarMatrizAsientos(): #LISTO, GENERADA MATRIZ DE STRINGS
+    matrizAsientos = np.full((7,6), "10") #Curioso que si pongo en vez de "10" pongo "unNumeroMenorQue10" ya no funciona bien
+
+    for i in range(1,38,6):
+        inicioFila = [num for num in range(1,38,6)]
+        
+        for row in range(7):
+            for col in range(6):
+                matrizAsientos[row][col] = str(inicioFila[row]+col)
+    
+    return matrizAsientos
+
 class Pasajero:
     cantidadPasajeros = 0
     mensajePedidoDatos = "Ingreso datos pasajero: "
@@ -162,7 +164,7 @@ class Pasajero:
     
 class Avion:
     pasajeros = []
-    asientos = generarListaAsientos()
+    asientos = generarMatrizAsientos()
     
     @classmethod
     def comprarVuelo(cls,pasajero): #falta: hacer el proceso de compra de vuelo según enunciado
@@ -170,7 +172,7 @@ class Avion:
         
         for fila in range(0,7):
             for asiento in range(0,6):
-                if pasajero.numAsiento == cls.asientos[fila][asiento]:
+                if str(pasajero.numAsiento) == cls.asientos[fila][asiento]:
                     cls.asientos[fila][asiento] = "X"
                     
     @classmethod
@@ -191,23 +193,10 @@ class Avion:
     def verPasajerosInscritos(cls):#implementar
         pass
   
-#test
+#testb
 pasajero = Pasajero()
-pasajero.setNumAsiento(9)
+pasajero.setNumAsiento(23)
 Avion.comprarVuelo(pasajero)
 #Avion.verPasajerosInscritos() NO IMPLEMENTADO
 Avion.verAsientosDisponibles()
 
-#creacion matriz bidimensional de asientos especifica para este ejercicio(ver manera de implementar)
-""" a = np.zeros((7,6), dtype=np.int8)
-
-
-for i in range(1,38,6):
-    inicioFila = [num for num in range(1,38,6)]
-    
-    for row in range(7):
-        for col in range(6):
-            a[row][col] = inicioFila[row]+col
-
-        
-print(a) """
