@@ -193,11 +193,13 @@ class Avion:
     def verPasajerosInscritos(cls):#implementar
         pass
   
-#testb
+#testbasd
 
 pasajero = Pasajero()
 pasajero.setNumAsiento(23)
 Avion.comprarVuelo(pasajero)
 #Avion.verPasajerosInscritos() NO IMPLEMENTADO
 Avion.verAsientosDisponibles()
+
+print()
 
