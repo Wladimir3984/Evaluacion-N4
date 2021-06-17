@@ -194,6 +194,7 @@ class Avion:
         pass
   
 #testb
+
 pasajero = Pasajero()
 pasajero.setNumAsiento(23)
 Avion.comprarVuelo(pasajero)
