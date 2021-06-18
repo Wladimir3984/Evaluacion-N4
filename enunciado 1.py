@@ -11,9 +11,8 @@ def clear():
         
 def generarMatrizAsientos(): #LISTO, GENERADA MATRIZ DE STRINGS
     matrizAsientos = np.full((7,6), "10") #Curioso que si pongo en vez de "10" pongo "unNumeroMenorQue10" ya no funciona bien
-
     for i in range(1,38,6):
-        inicioFila = [num for num in range(1,38,6)]
+        inicioFila = [num for num in range(1,38,6)]# 1 7 13 19 25
         
         for row in range(7):
             for col in range(6):
@@ -46,7 +45,7 @@ class Pasajero:
     def setNombre(self, nombre):
         self.nombre = nombre
     
-    def setTelefono(self, telefono):
+    def setTelefono(self, telefono): #validar telefono
         self.telefono = telefono
         
     def setNumAsiento(self, num):
@@ -190,14 +189,34 @@ class Avion:
         print(cls.asientos[6])
     
     @classmethod
-    def verPasajerosInscritos(cls):#implementar
-        pass
+    def verPasajerosInscritos(cls): #IMPLEMENTAR POR LUCAS
+        cls.pasajeros[0].toString()
   
 #test
+pasajero1 = Pasajero()
+pasajero1.setNumAsiento(29)
+Avion.comprarVuelo(pasajero1)
+Avion.verAsientosDisponibles()
+Avion.verPasajerosInscritos()
 
-pasajero = Pasajero()
+""" pasajero = Pasajero()
 pasajero.setNumAsiento(23)
 Avion.comprarVuelo(pasajero)
+print("sadsadsa")
 #Avion.verPasajerosInscritos() NO IMPLEMENTADO
 Avion.verAsientosDisponibles()
-print("commit")
+print("commit desde rama r") """
+
+
+
+""" pasajero2 = Pasajero()
+pasajero1.toString()
+pasajero2.toString()
+pasajero1.setNumAsiento(19)
+pasajero1.setTelefono(124324234)
+pasajero1.setNombre("juan") """
+
+
+
+
+
