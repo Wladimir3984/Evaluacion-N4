@@ -198,6 +198,7 @@ class Avion:
 pasajero = Pasajero()
 pasajero.setNumAsiento(23)
 Avion.comprarVuelo(pasajero)
+print("sadsadsa")
 #Avion.verPasajerosInscritos() NO IMPLEMENTADO
 Avion.verAsientosDisponibles()
 print("commit desde rama r")
