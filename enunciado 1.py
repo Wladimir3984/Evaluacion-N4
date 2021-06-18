@@ -200,4 +200,4 @@ pasajero.setNumAsiento(23)
 Avion.comprarVuelo(pasajero)
 #Avion.verPasajerosInscritos() NO IMPLEMENTADO
 Avion.verAsientosDisponibles()
-print("commit")
+print("commit desde rama r")
