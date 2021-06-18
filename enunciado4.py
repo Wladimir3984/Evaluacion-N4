@@ -44,10 +44,11 @@ suma=0
 for fila in range(len(arreglo)):
     suma+=arreglo[fila]
 print("="*100)
-print(f"Las sumas por fila de cada fila es :{suma}")
+print(f"La suma de cada fila es :{suma}")
 
 suma=0
 for columna in range(numero1):
     suma+=arreglo[columna]
+total=np.round((suma/numero1), decimals=1)
 print("="*100)
-print(f"Los promedios de las columnas son : {suma/numero1}")
+print(f"El promedio de cada columna es de {total}")
