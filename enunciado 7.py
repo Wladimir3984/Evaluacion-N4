@@ -1,7 +1,7 @@
 while True:
     try:
-        numero=int(input("Ingrese un número entre 10 y 15 =>"))
-        if numero>=10 and numero<=15:
+        y=int(input("Ingrese un número entre 10 y 15 =>"))
+        if y>=10 and y<=15:
             break
         else:
             print("Ingrese un número dentro del rango.")
@@ -9,8 +9,7 @@ while True:
         print("Ingrese solo números enteros.")
 
 x=0
-y=1
-for fibo in range(numero):
+for fibo in range(y):
     z=x+y
     y=x
     x=z
