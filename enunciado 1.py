@@ -189,8 +189,8 @@ class Avion:
         print(cls.asientos[6])
     
     @classmethod
-    def verPasajerosInscritos(cls):#implementar
-        print(cls.pasajeros[0].toString())
+    def verPasajerosInscritos(cls): #IMPLEMENTAR POR LUCAS
+        cls.pasajeros[0].toString()
   
 #test
 pasajero1 = Pasajero()
@@ -198,9 +198,6 @@ pasajero1.setNumAsiento(29)
 Avion.comprarVuelo(pasajero1)
 Avion.verAsientosDisponibles()
 Avion.verPasajerosInscritos()
-
-
-
 
 """ pasajero = Pasajero()
 pasajero.setNumAsiento(23)
