@@ -10,13 +10,12 @@ def clear():
         os.system("clear")
         
 def generarMatrizAsientos(): #LISTO, GENERADA MATRIZ DE STRINGS
-    matrizAsientos = np.full((7,6), "10") #Curioso que si pongo en vez de "10" pongo "unNumeroMenorQue10" ya no funciona bien
-    for i in range(1,38,6):
-        inicioFila = [num for num in range(1,38,6)]# 1 7 13 19 25
+    matrizAsientos = np.full((42), "10") #Curioso que si pongo en vez de "10" pongo "unNumeroMenorQue10" ya no funciona bien
         
-        for row in range(7):
-            for col in range(6):
-                matrizAsientos[row][col] = str(inicioFila[row]+col)
+    for idx in range(0,42):
+       matrizAsientos[idx] = str(idx+1)
+       
+    matrizAsientos = matrizAsientos.reshape(7,6) 
     
     return matrizAsientos
 
