@@ -6,7 +6,8 @@ def clearConsole():
         command = 'cls'
     os.system(command)
 
-while True:
+while True: #se puede hacer con un for, para no repetir el mismo codigo dos veces, for x in range(2)
+            #creando antes un arreglo = np.array([0,0]), guardar el numero así; arreglo[x] = numeroIngresado
     try:
         numero1=int(input("Ingrese un número entre 3 y 6: "))
         if numero1>=3 and numero1<=6:
@@ -41,10 +42,10 @@ for x in range(numero1):
             except:
                 print("Solo números.")
 suma=0
-for fila in range(len(arreglo)):
-    suma+=arreglo[fila]
+for fila in range(len(arreglo)): # mejor usar numero1, ya que es el valor de las filas
+    suma+=arreglo[fila] #E: no suma filas, suma las columnas
 print("="*100)
-print(f"La suma de cada fila es :{suma}")
+print(f"La suma de cada fila es :{suma}") 
 
 suma=0
 for columna in range(numero1):
