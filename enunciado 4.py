@@ -42,10 +42,10 @@ for x in range(numero1):
             except:
                 print("Solo números.")
 suma=0
-for fila in range(len(arreglo)): # mejor usar numero1, ya que es el valor de las filas
-    suma+=arreglo[fila] #E: no suma filas, suma las columnas
-print("="*100)
-print(f"La suma de cada fila es :{suma}") 
+for fila in range(numero1):
+    suma=sum(arreglo[fila])
+    print(f"La suma de la fila {fila+1} es {round(suma)}")
+
 
 suma=0
 for columna in range(numero1):
