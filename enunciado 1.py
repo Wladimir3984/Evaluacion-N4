@@ -48,8 +48,8 @@ class Pasajero:
     def setTelefono(self, telefono): #validar telefono
         self.telefono = telefono
         
-    def setNumAsiento(self, num):
-        self.numAsiento = num
+    def setNumAsiento(self, num):#crear magic method de igualdad para este atributo
+        self.numAsiento = num #para validar que no este comprado un asiento para comprarlos
         
     @classmethod
     def addPasajero(cls):
