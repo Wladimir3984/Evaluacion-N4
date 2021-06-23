@@ -19,7 +19,7 @@ while True:
         except:
             print("Solo números.")
 
-    arreglo=np.random.randint(0, rango, size=10)        
+    arreglo=np.random.randint(0, rango, (2, 5))
 
     while True:
         try:
@@ -31,12 +31,13 @@ while True:
         except:
             print("Solo números")
 
-    for x in range(10):
-        if adivina==arreglo[x]:
-            print("Felicidades. Ganaste")
-            input("Presione enter para continuar...")
-            break
-        elif x==9 and adivina!=arreglo[x]:
-            print("Te equivocaste, estos eran los números")
-            print(arreglo)
-            input("Presione enter para continuar...")
+    for x in range(2):
+        for j in range(5):
+            if adivina==arreglo[x][j]:
+                print("Felicidades. Ganaste")
+                input("Presione enter para continuar...")
+                break
+            if x==1 and j==4 and adivina!=arreglo[x][j]:
+                print("Te equivocaste, estos eran los números")
+                print(arreglo)
+                input("Presione enter para continuar...")
