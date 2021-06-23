@@ -22,7 +22,6 @@ def generarMatrizAsientos(): #LISTO, GENERADA MATRIZ DE STRINGS
 
 class Pasajero:
     cantidadPasajeros = 0
-    mensajePedidoDatos = "Ingreso datos pasajero: "
     
     def __init__(self):
         self.nombre = giveNombre()
@@ -31,6 +30,9 @@ class Pasajero:
         self.banco = giveBanco()
         self.numAsiento = 0
         Pasajero.addPasajero()
+    
+    def __eq__(self, other):
+        return self.numAsiento == other.numAsiento
         
     def toString(self): 
         print(f"""
@@ -48,13 +50,17 @@ class Pasajero:
     def setTelefono(self, telefono): #validar telefono
         self.telefono = telefono
         
-    def setNumAsiento(self, num):#crear magic method de igualdad para este atributo
-        self.numAsiento = num #para validar que no este comprado un asiento para comprarlos
+    def setNumAsiento(self, num):
+        self.numAsiento = num 
         
     @classmethod
     def addPasajero(cls):
         cls.cantidadPasajeros+=1
           
+    @classmethod
+    def delPasajero(cls):
+        cls.cantidadPasajeros-=1
+        
     @classmethod
     def getCantidadPasajeros(cls):
         return Pasajero.cantidadPasajeros
@@ -73,8 +79,16 @@ class Avion:
                     cls.asientos[fila][asiento] = "X"
                     
     @classmethod
-    def anularVuelo(cls,pasajero): #implementar
-        pass     
+    def anularVuelo(cls,pasajero): 
+        #elimina de la lista de pasajeros el pasajero, actualiza la matriz de asientos cambiando la x
+        #a el numero de asiento que corresponde y disminuye en 1 Pasajero.cantidadPasajeros
+        Avion.asientos = Avion.asientos.reshape(42)
+        Avion.asientos[pasajero.numAsiento-1] = str(pasajero.numAsiento) #de "x" a numero
+        Avion.asientos = Avion.asientos.reshape(7,6)
+        
+        cls.pasajeros.remove(pasajero) #elimina pasajero
+        Pasajero.delPasajero() #disminuye en 1 Pasajero.cantidadPasajeros
+        
     
     @classmethod
     def verAsientosDisponibles(cls): #decorar
@@ -91,11 +105,25 @@ class Avion:
         cls.pasajeros[0].toString()
   
 #test
+clear()
 pasajero1 = Pasajero()
 pasajero1.setNumAsiento(29)
+
+pasajero2 = Pasajero()
+pasajero2.setNumAsiento(32)
+
 Avion.comprarVuelo(pasajero1)
+Avion.comprarVuelo(pasajero2)
+
 Avion.verAsientosDisponibles()
-Avion.verPasajerosInscritos()
+
+
+Avion.anularVuelo(pasajero1)
+print("")
+Avion.verAsientosDisponibles()
+
+print(Pasajero.cantidadPasajeros)
+print(len(Avion.pasajeros))
 
 """ pasajero = Pasajero()
 pasajero.setNumAsiento(23)
