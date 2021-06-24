@@ -70,26 +70,34 @@ class Avion:
     asientos = generarMatrizAsientos()
     
     @classmethod
-    def comprarVuelo(cls,pasajero): #falta: hacer el proceso de compra de vuelo según enunciado
+    def comprarVuelo(cls,pasajero): 
+        #retorna True si el vuelo fue comprado y False si el pasaje ya estaba usado
         cls.pasajeros.append(pasajero)
         
         for fila in range(0,7):
             for asiento in range(0,6):
                 if str(pasajero.numAsiento) == cls.asientos[fila][asiento]:
                     cls.asientos[fila][asiento] = "X"
+                    return True
+                
+        return False
                     
     @classmethod
     def anularVuelo(cls,pasajero): 
         #elimina de la lista de pasajeros el pasajero, actualiza la matriz de asientos cambiando la x
         #a el numero de asiento que corresponde y disminuye en 1 Pasajero.cantidadPasajeros
-        Avion.asientos = Avion.asientos.reshape(42)
-        Avion.asientos[pasajero.numAsiento-1] = str(pasajero.numAsiento) #de "x" a numero
-        Avion.asientos = Avion.asientos.reshape(7,6)
+        #retorna True si se elimina correctamente y False si el pasajero no existe
+        if pasajero in Avion.pasajeros:
+            Avion.asientos = Avion.asientos.reshape(42)
+            Avion.asientos[pasajero.numAsiento-1] = str(pasajero.numAsiento) #de "x" a numero
+            Avion.asientos = Avion.asientos.reshape(7,6)
+            
+            cls.pasajeros.remove(pasajero) #elimina pasajero
+            Pasajero.delPasajero() #disminuye en 1 Pasajero.cantidadPasajeros
+            return True
         
-        cls.pasajeros.remove(pasajero) #elimina pasajero
-        Pasajero.delPasajero() #disminuye en 1 Pasajero.cantidadPasajeros
+        return False
         
-    
     @classmethod
     def verAsientosDisponibles(cls): #decorar
         print(cls.asientos[0])
@@ -110,15 +118,15 @@ pasajero1 = Pasajero()
 pasajero1.setNumAsiento(29)
 
 pasajero2 = Pasajero()
-pasajero2.setNumAsiento(32)
+pasajero2.setNumAsiento(29)
 
-Avion.comprarVuelo(pasajero1)
-Avion.comprarVuelo(pasajero2)
+print(Avion.comprarVuelo(pasajero1))
+print(Avion.comprarVuelo(pasajero2))
 
 Avion.verAsientosDisponibles()
 
 
-Avion.anularVuelo(pasajero1)
+print(Avion.anularVuelo(pasajero2))
 print("")
 Avion.verAsientosDisponibles()
 
