@@ -1,5 +1,6 @@
 from time import sleep
 import os
+import numpy as np
 
 def clear():
     if os.name == "nt":
@@ -7,7 +8,7 @@ def clear():
     else:
         os.system("clear")
 
-#FUNCIONES INPUTS PASAJERO ENUNCIADO 1
+#FUNCIONES ENUNCIADO 1
 mensajePedidoDatos = "Ingreso datos pasajero: "
 
 def giveNombre(): 
@@ -107,3 +108,13 @@ def giveBanco():
     sleep(2)
     clear()
     return giveBanco()
+
+def generarMatrizAsientos(): #LISTO, GENERADA MATRIZ DE STRINGS
+        matrizAsientos = np.full((42), "10") #Curioso que si pongo en vez de "10" pongo "unNumeroMenorQue10" ya no funciona bien
+            
+        for idx in range(0,42):
+            matrizAsientos[idx] = str(idx+1)
+        
+        matrizAsientos = matrizAsientos.reshape(7,6) 
+        
+        return matrizAsientos
