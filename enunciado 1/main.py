@@ -19,7 +19,7 @@ Avion.verAsientosDisponibles()#nada comprado
 
 print(Avion.giveNumOfPassengers())#0 """
 
-#test 2 COMPRA DE DOS PASAJES SIN ANULAR
+#test 2 COMPRA DE DOS PASAJES SIN ANULAR: OK
 
 pasajero1 = Pasajero()
 pasajero2 = Pasajero()

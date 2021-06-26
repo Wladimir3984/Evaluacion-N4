@@ -6,6 +6,53 @@ class Avion:
     asientos = generarMatrizAsientos()
     
     @classmethod
+    def modificarNombre(cls, indice):
+        pass
+    
+    @classmethod
+    def modificarTelefono(cls, indice):
+        pass
+    
+    @classmethod
+    def modificarPasajero(cls):
+        while True: 
+            try:
+                print("Validación datos Pasajero")
+                rutCv = input("Rut(ej: 99.999.999-9) ->")
+                asiento = int(input("Asiento(1-42) -> "))
+                
+                if (rutCv.count(".") == 2 and rutCv.count("-") == 1 and rutCv[-2] == "-" and 11<=len(rutCv)<=12 and 1<=asiento<=42):
+                    break 
+                
+                clear()
+                print("¡Datos invalidos!")
+                sleep(2)
+                clear()
+            except:
+                clear()
+                print("¡Solo numeros!")
+                sleep(2)
+                clear()
+        
+        for i in range(len(Avion.pasajeros)):
+             if Avion.pasajeros[i].__rut == rutCv and Avion.pasajeros[i].__numAsiento == asiento:
+                 print("""
+                Dato a modificar:
+                1. Nombre
+                2. Telefono
+                opción -> """,end = "")
+             opcion = int(input())
+             
+             if opcion == 1: 
+                 Avion.modificarNombre(i)
+             elif opcion == 2:
+                 Avion.modificarTelefono(i)
+        
+
+    
+   
+    
+    @classmethod
     def comprarVuelo(cls,pasajero): 
         #retorna True si el vuelo fue comprado y False si el pasaje ya estaba usado
         
@@ -54,30 +101,30 @@ class Avion:
 class Pasajero:
     
     def __init__(self):
-        self.nombre = giveNombre()
-        self.rut = giveRutCv()
-        self.telefono = giveNum()
-        self.banco = giveBanco()
-        self.numAsiento = 0
+        self.__nombre = giveNombre()
+        self.__rut = giveRutCv()
+        self.__telefono = giveNum()
+        self.__banco = giveBanco()
+        self.__numAsiento = 0
         
     def toString(self): 
         print(f"""
               
-              Nombre:   {" ".join(self.nombre).title()}
-              Run:      {self.rut[0]}-{self.rut[1]}
-              Telefono: {self.telefono}
-              Banco:    {" ".join(self.banco).title()}
-              Asiento:  #{self.numAsiento}
+              Nombre:   {" ".join(self.__nombre).title()}
+              Run:      {self.__rut[0]}-{self.__rut[1]}
+              Telefono: {self.__telefono}
+              Banco:    {" ".join(self.__banco).title()}
+              Asiento:  #{self.__numAsiento}
               """)
      
     def setNombre(self, nombre):
-        self.nombre = nombre
+        self.__nombre = nombre
     
     def setTelefono(self, telefono): #validar telefono
-        self.telefono = telefono
+        self.__telefono = telefono
         
     def setNumAsiento(self, num):
         if str(num) in Avion.asientos:
-            self.numAsiento = num 
+            self.__numAsiento = num 
             return True
         return False  
