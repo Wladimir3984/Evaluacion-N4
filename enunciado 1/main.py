@@ -1,5 +1,6 @@
 from clases import *
-#HACER EL MENU EJECUTABLE AQUI, CUANDO YA ESTE FUNCIONANDO QUIZAS HACERLO COMO UNA FUNCION
+#HACER EL MENU EJECUTABLE AQUI, CUANDO YA ESTE FUNCIONANDO HACERLO COMO UNA FUNCION PARA IMPORTARLO
+#A UN PROGRAMA PRINCIPAL DONDE ESTEN TODOS LOS ENUNCIADOS
 
 #test 1 TRATAR DE COMPRAR UN PASAJE COMPRADO: OK
 """ pasajero1 = Pasajero()
@@ -21,7 +22,7 @@ print(Avion.giveNumOfPassengers())#0 """
 
 #test 2 COMPRA DE DOS PASAJES SIN ANULAR: OK
 
-pasajero1 = Pasajero()
+""" pasajero1 = Pasajero()
 pasajero2 = Pasajero()
 
 print(f"print 1 {pasajero1.setNumAsiento(1)}") #True 
@@ -30,9 +31,20 @@ print(f"print 3 {pasajero2.setNumAsiento(42)}")#True
 print(f"print 4 {Avion.comprarVuelo(pasajero2)}")#True
 
 Avion.verAsientosDisponibles()#1 y 42 comprado
-print(Avion.giveNumOfPassengers())#2
+print(Avion.giveNumOfPassengers())#2 """
 
+#test 3 probar validarPasajero
+clear()
+pasajero1 = Pasajero()
+pasajero2 = Pasajero()
 
+pasajero1.setNumAsiento(42)
+pasajero2.setNumAsiento(32)
+
+Avion.comprarVuelo(pasajero1)
+Avion.comprarVuelo(pasajero2)
+
+print(Avion.validarPasajero())#
 
 
 

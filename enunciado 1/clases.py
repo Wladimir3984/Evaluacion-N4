@@ -14,6 +14,102 @@ class Avion:
         pass
     
     @classmethod
+    def validarPasajero(cls):
+        check1 = "✘"
+        check2 = "✘"
+        idx1 = 0
+        idx2 = -1
+        
+        while True:
+            clear()
+            
+            if check1 == "✔" and check2 == "✔" and idx1 == idx2:
+                print(f"""Validar datos pasajero 
+              Run ({check1}) Asiento ({check2}) 
+              1. Modificar pasajero
+              2. Cancelar modificación 
+              opc -> """, end="")
+
+                try:
+                    opc = int(input(""))
+                except:
+                    clear()
+                    print("¡Solo numeros!")
+                    sleep(2)
+                    continue
+                if 1<=opc<=2:
+                    if opc == 1: return idx1
+                    else: return False
+                
+                clear()
+                print("¡Opción invalida!")
+                sleep(2)
+                continue
+            
+            elif check1 == "✔" and check2 == "✔" and idx1 != idx2:
+                check1 = "✘"
+                check2 = "✘"
+                idx1 = 0
+                idx2 = -1
+                
+            else:
+                auxDatoOk = False
+                print(f"""Validar datos pasajero 
+                1. Run     ({check1})  
+                2. Asiento ({check2})
+                3. Cancelar validación
+                opc -> """, end="")
+
+                try:
+                    opc = int(input(""))
+                except:
+                    clear()
+                    print("¡Solo numeros!")
+                    sleep(2)
+                    clear()
+                    continue
+                
+                if 1<=opc<=3:
+                    if opc == 1:
+                        rutCv = input("Rut(ej: 99.999.999-9) -> ")
+                        
+                        if rutCv.count(".") == 2 and rutCv.count("-") == 1 and rutCv[-2] == "-" and 11<=len(rutCv)<=12:
+                            for i in range(len(Avion.pasajeros)):
+                                if "-".join(Avion.pasajeros[i].rut) == rutCv:
+                                    auxDatoOk = True
+                                    idx1 = i
+                                    break
+                            
+                            if auxDatoOk: check1 = "✔"
+                            else: check1 = "✘"
+                            
+                    elif opc == 2:
+                        try:
+                            asiento = int(input("Asiento -> "))
+                        except:
+                            check2 = "✘"
+                            clear()
+                            print("¡Solo numeros!")
+                            sleep(2)
+                            clear()
+                        
+                        for i in range(len(Avion.pasajeros)):
+                            if Avion.pasajeros[i].numAsiento == asiento:
+                                auxDatoOk = True
+                                idx2 = i
+                                break
+                        
+                        if auxDatoOk: check2 = "✔"
+                        else: check2 = "✘"
+                        
+                    else: return False
+                
+                else: 
+                    clear()
+                    print("¡Opción invalida!")
+                    sleep(2)
+                
+    @classmethod
     def modificarPasajero(cls):
         while True: 
             try:
@@ -35,7 +131,7 @@ class Avion:
                 clear()
         
         for i in range(len(Avion.pasajeros)):
-             if Avion.pasajeros[i].__rut == rutCv and Avion.pasajeros[i].__numAsiento == asiento:
+             if Avion.pasajeros[i].rut == rutCv and Avion.pasajeros[i].numAsiento == asiento:
                  print("""
                 Dato a modificar:
                 1. Nombre
@@ -48,10 +144,6 @@ class Avion:
              elif opcion == 2:
                  Avion.modificarTelefono(i)
         
-
-    
-   
-    
     @classmethod
     def comprarVuelo(cls,pasajero): 
         #retorna True si el vuelo fue comprado y False si el pasaje ya estaba usado
@@ -101,30 +193,30 @@ class Avion:
 class Pasajero:
     
     def __init__(self):
-        self.__nombre = giveNombre()
-        self.__rut = giveRutCv()
-        self.__telefono = giveNum()
-        self.__banco = giveBanco()
-        self.__numAsiento = 0
+        self.nombre = giveNombre()
+        self.rut = giveRutCv()
+        self.telefono = giveNum()
+        self.banco = giveBanco()
+        self.numAsiento = 0
         
     def toString(self): 
         print(f"""
               
-              Nombre:   {" ".join(self.__nombre).title()}
-              Run:      {self.__rut[0]}-{self.__rut[1]}
-              Telefono: {self.__telefono}
-              Banco:    {" ".join(self.__banco).title()}
-              Asiento:  #{self.__numAsiento}
+              Nombre:   {" ".join(self.nombre).title()}
+              Run:      {self.rut[0]}-{self.rut[1]}
+              Telefono: {self.telefono}
+              Banco:    {" ".join(self.banco).title()}
+              Asiento:  #{self.numAsiento}
               """)
      
     def setNombre(self, nombre):
-        self.__nombre = nombre
+        self.nombre = nombre
     
     def setTelefono(self, telefono): #validar telefono
-        self.__telefono = telefono
+        self.telefono = telefono
         
     def setNumAsiento(self, num):
         if str(num) in Avion.asientos:
-            self.__numAsiento = num 
+            self.numAsiento = num 
             return True
         return False  
