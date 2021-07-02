@@ -11,6 +11,44 @@ def clear():
 #FUNCIONES ENUNCIADO 1
 mensajePedidoDatos = "Ingreso datos pasajero: "
 
+""" def NumAsiento(self, num):
+        if str(num) in Avion.asientos:
+            self.numAsiento = num 
+            return True
+        return False   """
+        
+
+    
+""" def giveAsiento():
+    clear()
+    print(mensajePedidoDatos)
+    print("")
+    
+    try:
+        asiento = int(input("Asiento -> "))
+    except:
+        clear()
+        print("¡Solo numeros!")
+        sleep(2)
+        clear()
+        return giveAsiento()
+    
+    if 1<=asiento<=42:
+        if Avion.validNumAsiento(asiento):
+            return asiento
+        
+        clear()
+        print("Asiento no disponible :c")
+        sleep(2)
+        clear()
+        return giveAsiento()
+        
+    clear()
+    print("¡Numero fuera de rango!")
+    sleep(2)
+    clear()
+    return giveAsiento() """
+
 def giveNombre(): 
     clear()
     print(mensajePedidoDatos)
