@@ -1,35 +1,5 @@
 from funciones import *
 
-def giveAsiento():
-    clear()
-    print(mensajePedidoDatos)
-    print("")
-    
-    try:
-        asiento = int(input("Asiento -> "))
-    except:
-        clear()
-        print("¡Solo numeros!")
-        sleep(2)
-        clear()
-        return giveAsiento()
-    
-    if 1<=asiento<=42:
-        if Avion.validNumAsiento(asiento):
-            return asiento
-        
-        clear()
-        print("Asiento no disponible :c")
-        sleep(2)
-        clear()
-        return giveAsiento()
-        
-    clear()
-    print("¡Numero fuera de rango!")
-    sleep(2)
-    clear()
-    return giveAsiento()
-
 class Avion:
     
     pasajeros = []
@@ -43,13 +13,7 @@ class Avion:
                 if cls.asientos[x][j] != "X":
                     disponibles=True
         return disponibles
-        
-    @classmethod
-    def validNumAsiento(cls, num):
-        #retorna True si el asiento esta disponible
-            if str(num) in cls.asientos:
-                return True
-            return False  
+     
     @classmethod
     def modificarNombre(cls, indice, nombre):
         cls.pasajeros[indice].nombre = nombre
@@ -159,39 +123,78 @@ class Avion:
     @classmethod
     def modificarPasajero(cls):
         indicePasajero = cls.validarPasajero()
-        while True:
-            if indicePasajero:  
-                print(f""" 
-                    Modificar {cls.pasajeros[indicePasajero].nombre}
-                    1.Modificar nombre 
-                    2.Modificar telefono
-                    opc -> """, end="")
-                try:
-                    opc = int(input(""))
-                except:
+        
+        while True:  
+            print(f""" 
+                Modificar {cls.pasajeros[indicePasajero].nombre}
+                1.Modificar nombre 
+                2.Modificar telefono
+                3.Salir
+                opc -> """, end="")
+            try:
+                opc = int(input(""))
+            except:
+                clear()
+                print("¡Solo numeros!")
+                sleep(2)
+                clear()
+                continue
+            
+            if 1<=opc<=3:
+                if opc == 1:
+                    print(f"Nombre actual: {cls.pasajeros[indicePasajero].nombre}  ")
+                    print("")
+                    nuevoNombre = input("Nuevo nombre -> ").split(" ")
+                    isValidName = True
+                    for parteNombre in nuevoNombre:
+                        if not (len(parteNombre) > 2 and parteNombre.isalpha):
+                            isValidName = False
+                    if isValidName: 
+                        cls.modificarNombre(indicePasajero,nuevoNombre)
+                        clear()
+                        print("El nombre se a modificado correctamente")
+                        sleep(2)
+                        clear()
+                        continue
                     clear()
-                    print("¡Solo numeros!")
+                    print("¡Nombre invalido!")
                     sleep(2)
                     clear()
-                    continue
-                
-                if 1<=opc<=2:
-                    if opc == 1:
-                        print(f"Nombre actual: {cls.pasajeros[indicePasajero].nombre}  ")
-                        print("")
-                        nuevoNombre = input("Nuevo nombre -> ").split(" ")
-                        isValidName = True
-                        for parteNombre in nuevoNombre:
-                            if not (len(parteNombre) > 2 and parteNombre.isalpha):
-                                isValidName = False
-                        if isValidName: 
-                            cls.modificarNombre(indicePasajero,nuevoNombre)
-                            print("El nombre se a modificado correctamente")
+                    
+                elif opc == 2:
+                    print(f"Telefono actual: {cls.pasajeros[indicePasajero].telefono}  ")
+                    print("")
+                    try:
+                        nuevoTelefono = int(input("Nuevo telefono -> "))
+                    except:
+                        clear()
+                        print("¡Solo numeros!")
+                        sleep(2)
+                        clear()
+                        continue
+                    
+                    if 900000000<=nuevoTelefono<=999999999:
+                        cls.modificarTelefono(indicePasajero,nuevoTelefono)
+                        clear()
+                        print("El telefono se a modificado correctamente")
+                        sleep(2)
+                        clear()
+                        continue
                         
-                    elif opc == 2:
-                        pass
+                    
+                    clear()
+                    print("¡Telefono invalido(fuera de rango)!")
+                    sleep(2)
+                    clear()
+                    
                 
-        
+                else: return 
+            else:
+                clear()
+                print("¡Opción invalida!")
+                sleep(2)
+                clear()
+                
     @classmethod
     def comprarVuelo(cls,pasajero): 
         #retorna True si el vuelo fue comprado y False si el pasaje ya estaba usado
@@ -244,7 +247,7 @@ class Pasajero:
         self.rut = giveRutCv()
         self.telefono = giveNum()
         self.banco = giveBanco()
-        self.numAsiento = giveAsiento()
+        self.numAsiento = giveAsiento(Avion.asientos)
         
     def toString(self): 
         print(f"""
