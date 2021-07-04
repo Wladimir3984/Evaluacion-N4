@@ -1,54 +1,11 @@
 from clases import *
+from funciones import clear #<-----USAR FUNCION clear() PARA LIMPIAR CONSOLA
 #HACER EL MENU EJECUTABLE AQUI, CUANDO YA ESTE FUNCIONANDO HACERLO COMO UNA FUNCION PARA IMPORTARLO
 #A UN PROGRAMA PRINCIPAL DONDE ESTEN TODOS LOS ENUNCIADOS
 
-#test 1 TRATAR DE COMPRAR UN PASAJE COMPRADO: OK
-""" pasajero1 = Pasajero()
-pasajero2 = Pasajero()
-
-print(f"print 1 {pasajero1.setNumAsiento(29)}") #True 29
-print(f"print 2 {Avion.comprarVuelo(pasajero1)}")#True
-print(f"print 3 {pasajero2.setNumAsiento(29)}")#False porque el 29 ya esta comprado
-print(f"print 4 {Avion.comprarVuelo(pasajero2)}")#False porque no existe el pasaje numero "0"
-
-Avion.verAsientosDisponibles()#29 comprado
-
-
-print(f"print 5 {Avion.anularVuelo(pasajero1)}")#True
-print("")
-Avion.verAsientosDisponibles()#nada comprado
-
-print(Avion.giveNumOfPassengers())#0 """
-
-#test 2 COMPRA DE DOS PASAJES SIN ANULAR: OK
-
-""" pasajero1 = Pasajero()
-pasajero2 = Pasajero()
-
-print(f"print 1 {pasajero1.setNumAsiento(1)}") #True 
-print(f"print 2 {Avion.comprarVuelo(pasajero1)}")#True
-print(f"print 3 {pasajero2.setNumAsiento(42)}")#True
-print(f"print 4 {Avion.comprarVuelo(pasajero2)}")#True
-
-Avion.verAsientosDisponibles()#1 y 42 comprado
-print(Avion.giveNumOfPassengers())#2 """
-
-#test 3 probar validarPasajero
-""" clear()
-pasajero1 = Pasajero()
-pasajero2 = Pasajero()
-
-pasajero1.setNumAsiento(42)
-pasajero2.setNumAsiento(32)
-
-Avion.comprarVuelo(pasajero1)
-Avion.comprarVuelo(pasajero2)
-
-print(Avion.validarPasajero())# """
-
-
 opcion=0
 while opcion!=5:
+    clear()
     opcion=0 
     print("="*100)
     print("1. Ver asientos disponibles\n2. Comprar asiento\n3. Anular vuelo\n4. Modificar datos de pasajero\n5. Salir")
@@ -62,9 +19,11 @@ while opcion!=5:
             print("Ingrese solo números.")
 
     if opcion==1: #Ver asientos
+        clear()
         Avion.verAsientosDisponibles()
 
     elif opcion==2: 
+        clear()
         if Avion.disponibilidadAsientos():
             pasajero = Pasajero()
             if Avion.comprarVuelo(pasajero):
@@ -75,16 +34,47 @@ while opcion!=5:
             print("No existen asientos disponibles.")    
     
     elif opcion==3:
-        rut=input("Ingrese su rut: ")
-        if rut.count(".") == 2 and rut.count("-") == 1 and rut[-2] == "-" and 11<=len(rut)<=12:
-           # print(f"{rut} {pasajero.rut[0]}")
-            if rut=="-".join(pasajero.rut):
-                Avion.anularVuelo(pasajero)
-                print("Reserva eliminada éxitosamente.")
-            else:
-                print("Ese rut no se encuentra registrado.")
-        else:
-            print("Rut inválido.")
-            
+        clear()
+        while True:
+            print("Lista de pasajes comprados")
+            print("")
+            if Avion.verPasajerosInscritos():
+                try:
+                    asiento = int(input("Num pasaje a eliminar -> "))
+                except:
+                    clear()
+                    print("¡Solo numeros!")
+                    sleep(2)
+                    clear()
+                    continue
+                
+                if Avion.anularVuelo(asiento):
+                    clear()
+                    print("Vuelo eliminado correctamente")
+                    sleep(2)
+                    clear()
+                    break
+                elif 1<=asiento<=42: 
+                    clear()
+                    print("Numero de vuelo no reservado")
+                    sleep(2)
+                    clear()
+                    break
+                else: 
+                    clear()
+                    print("¡No existen pasajes con ese numero!")
+                    sleep(2)
+                    clear()
+                    break
+            else: 
+                clear()
+                print("No hay vuelos reservados")
+                sleep(2)
+                clear()
+                break
+                
+                    
+               
     elif opcion==4:
+        clear()
         Avion.modificarPasajero()

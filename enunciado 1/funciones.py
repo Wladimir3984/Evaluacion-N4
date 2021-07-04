@@ -37,7 +37,7 @@ def giveAsiento(arrayAsientos):
             return asiento
         
         clear()
-        print("Asiento no disponible :c")
+        print("Asiento no disponible")
         sleep(2)
         clear()
         return giveAsiento(arrayAsientos)
