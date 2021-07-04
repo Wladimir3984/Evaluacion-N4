@@ -25,13 +25,46 @@ while opcion!=5:
     elif opcion==2: 
         clear()
         if Avion.disponibilidadAsientos():
+            precioPasaje = 78900
             pasajero = Pasajero()
-            if Avion.comprarVuelo(pasajero):
-                print("Asiento reservado éxitosamente.")
-            else:
-                print("Ese asiento no se encuentra disponible.")
+            
+            if 31<=pasajero.numAsiento<=42: # VIP
+                precioPasaje = 240000
+            
+            if pasajero.banco == "BancoDuoc": #15% descuento por ser del banco duoc
+                precioPasaje -= precioPasaje*0.15 
+            
+            while True:
+                clear()
+                print(f"Precio pasaje: ${precioPasaje}")
+                aceptaCompra = input("¿Acepta la compra del pasaje?(si/no) -> ").upper()
+                
+                if aceptaCompra == "SI":
+                    if Avion.comprarVuelo(pasajero):
+                      clear()
+                      print("Asiento reservado éxitosamente.")
+                      sleep(2)
+                      break
+                  
+                    else:
+                        clear()
+                        print("Ese asiento no se encuentra disponible.")
+                        sleep(2)
+                        break
+                elif aceptaCompra == "NO":
+                    break
+                
+                else: 
+                    clear()
+                    print("respuesta invalida")
+                    sleep(2)
+                    continue
+            
         else:
-            print("No existen asientos disponibles.")    
+            clear()
+            print("No existen asientos disponibles.")  
+            sleep(2)  
+            
     
     elif opcion==3:
         clear()

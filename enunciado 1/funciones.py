@@ -147,7 +147,8 @@ def giveBanco():
     return giveBanco()
 
 def generarMatrizAsientos(): #LISTO, GENERADA MATRIZ DE STRINGS
-        matrizAsientos = np.full((42), "10") #Curioso que si pongo en vez de "10" pongo "unNumeroMenorQue10" ya no funciona bien
+        matrizAsientos = np.full((42), "10") #Curioso que si en vez de "10" pongo "unNumeroMenorQue10"- 
+       #-ya no funciona bien cuando se le ingresan strings de numeros menores que 10
             
         for idx in range(0,42):
             matrizAsientos[idx] = str(idx+1)
