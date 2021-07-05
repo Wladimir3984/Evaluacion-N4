@@ -2,8 +2,8 @@ import os
 from math import pi        
 def area_circulo(radio):
     return pi * (radio**2)
-def perimetro_cuadrado(largo, alto):
-    return largo+largo+alto+alto
+def perimetro_cuadrado(lado):
+    return lado+lado+lado+lado
 
 def clearConsole():
     command = 'clear'
@@ -42,15 +42,8 @@ def enunciado6():
             clearConsole()
             while True:
                 try:
-                    largo=float(input("Ingrese largo del cuadrado=>"))
-                    break
-                except:
-                    print("Ingrese solo números")
-
-            while True:
-                try:
-                    alto=float(input("Ingrese alto del cuadrado=>"))
-                    print(f"El perímetro es de: {perimetro_cuadrado(largo, alto)}")
+                    lado=float(input("Ingrese un lado del cuadrado=>"))
+                    print(f"El perímetro es de: {perimetro_cuadrado(lado)}")
                     input("Presione ENTER para continuar...")
                     break
                 except:
