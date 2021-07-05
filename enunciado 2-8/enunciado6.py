@@ -17,7 +17,7 @@ def enunciado6():
         clearConsole()
         opcion=0
         print("1. Calcular área de círculo.")
-        print("2. Calcular perímetro cuadrado.")
+        print("2. Calcular perímetro de un cuadrado.")
         print("3. Salir")
         while True:
             try:
