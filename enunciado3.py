@@ -1,13 +1,6 @@
 import numpy as np
-import os
-def clearConsole():
-    command = 'clear'
-    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
-        command = 'cls'
-    os.system(command)
 
-while True:
-    clearConsole()
+def enunciado3():
     print("Bienvenido al juego, adivina el número")
     while True:
         try:
@@ -15,11 +8,10 @@ while True:
             if rango<0 or rango>=999999:
                 print("Ingrese un rango correcto.")
             else:
+                arreglo=np.random.randint(0, rango, (2, 5))
                 break
         except:
-            print("Solo números.")
-
-    arreglo=np.random.randint(0, rango, (2, 5))
+            print("Solo números mayores a 1.")
 
     while True:
         try:
@@ -37,7 +29,10 @@ while True:
                 print("Felicidades. Ganaste")
                 input("Presione enter para continuar...")
                 break
+        else:
             if x==1 and j==4 and adivina!=arreglo[x][j]:
                 print("Te equivocaste, estos eran los números")
                 print(arreglo)
                 input("Presione enter para continuar...")
+            continue
+        break
