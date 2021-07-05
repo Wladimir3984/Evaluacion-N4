@@ -15,18 +15,27 @@ def clearConsole():
 
 opcion=0
 while opcion!=8:
-    clearConsole()
+    
     opcion=0 
-    print("="*100)
-    print("1. Enunciado 2\n2. Enunciado 3\n3. Enunciado 4\n4. Enunciado 5\n5. Enunciado 6\n6. Enunciado 7\n7. Enunciado 8\n8. Salir")
-    print("="*100)
+    
     while opcion<1 or opcion>8:
         try:
+            clearConsole()
+            print("="*100)
+            print("1. Enunciado 2\n2. Enunciado 3\n3. Enunciado 4\n4. Enunciado 5\n5. Enunciado 6\n6. Enunciado 7\n7. Enunciado 8\n8. Salir")
+            print("="*100)
+            
             opcion=int(input("=>"))
             if opcion<1 or opcion>8:
+                clearConsole()
                 print("Ingrese una opción válida.")
+                sleep(2)
+                clearConsole()
         except:
-            print("Ingrese solo números.")
+            clearConsole()
+            print("Ingrese solo números enteros.")
+            sleep(2)
+            clearConsole()
 
     if opcion==1: #ENUNCIADO 2
         clearConsole()
